@@ -10,7 +10,7 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
         $response->assertStatus(200);
-        $response->assertSee('Ayo tanggap bencana');
+        $response->assertSee('Ayo Tanggap Bencana');
         $response->assertSee('Laporkan');
         $response->assertSee('Kirim Feedback');
     }
@@ -74,6 +74,14 @@ class ExampleTest extends TestCase
             'location' => 'Kawasan Tikala Baru, Kec. Tikala, Kota Manado',
             'coordinates' => '1.4822° N, 124.8489° E',
             'description' => 'Genangan air setinggi 35cm masuk ke halaman warga di Tikala Baru.',
+            'media_list' => [
+                [
+                    'type' => 'image',
+                    'url' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                    'name' => 'bukti_banjir.png',
+                    'size' => '1.1 MB',
+                ],
+            ],
             'photo_data_url' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
             'photo_name' => 'bukti_banjir.png',
             'photo_size' => '1.1 MB',

@@ -50,6 +50,18 @@
 
             <div class="h-5 w-[1px] bg-slate-200 hidden sm:block"></div>
 
+            <!-- Admin Panel Switcher -->
+            <a
+                href="{{ route('admin.dashboard') }}"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-[#0f172a] hover:bg-[#1e293b] text-white shadow-xs transition"
+                title="Buka Halaman Admin SiagaManado"
+            >
+                <svg class="w-3.5 h-3.5 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3l9 8h-3v10h-4v-6h-4v6H6V11H3l9-8z"/>
+                </svg>
+                <span>Admin Panel</span>
+            </a>
+
             <!-- User Profile Trigger -->
             <a
                 href="{{ route('profile') }}"
