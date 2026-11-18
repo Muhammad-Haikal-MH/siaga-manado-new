@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\AdminSiagamanadoController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\UserPortalController;
 use Illuminate\Support\Facades\Route;
 
-// Role Masyarakat (User) Routes
+// =========================================================================
+// ROLE 1: MASYARAKAT (USER)
+// =========================================================================
 Route::get('/', [UserPortalController::class, 'home'])->name('home');
 Route::get('/berita', [UserPortalController::class, 'newsIndex'])->name('news.index');
 Route::get('/berita/{slug}', [UserPortalController::class, 'newsShow'])->name('news.show');
@@ -43,4 +46,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/mitigasi', [AdminSiagamanadoController::class, 'mitigasiIndex'])->name('mitigasi.index');
     Route::post('/mitigasi/{id}/publish', [AdminSiagamanadoController::class, 'mitigasiPublish'])->name('mitigasi.publish');
     Route::delete('/mitigasi/{id}', [AdminSiagamanadoController::class, 'mitigasiDelete'])->name('mitigasi.delete');
+    });
+// =========================================================================
+// ROLE 2: PETUGAS BPBD (TIM REAKSI CEPAT / TRC)
+// =========================================================================
+Route::prefix('petugas')->name('petugas.')->group(function () {
+    Route::get('/', [PetugasController::class, 'dashboard'])->name('dashboard');
+    Route::post('/check-in-radio', [PetugasController::class, 'checkInRadio'])->name('radio.checkin');
+
+    Route::get('/penugasan', [PetugasController::class, 'assignments'])->name('assignments');
+    Route::get('/penugasan/{id}', [PetugasController::class, 'assignmentDetail'])->name('assignments.show');
+    Route::post('/penugasan/{id}/terima', [PetugasController::class, 'acceptAssignment'])->name('assignments.accept');
+
+    Route::get('/pengajuan-izin', [PetugasController::class, 'leaveCreate'])->name('leave');
+    Route::post('/pengajuan-izin', [PetugasController::class, 'leaveStore'])->name('leave.store');
+
+    Route::get('/notifikasi', [PetugasController::class, 'notifications'])->name('notifications');
+    Route::post('/notifikasi/baca-semua', [PetugasController::class, 'markAllNotificationsRead'])->name('notifications.readAll');
 });
